@@ -1,0 +1,80 @@
+.container {
+  min-height: calc(100vh - 76px);
+  padding: 40px 0 25px 0;
+}
+
+.containerItens {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 12px;
+  column-gap: 12px;
+  grid-row-gap: 12px;
+  row-gap: 12px;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 1000px) {
+  .containerItens {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .containerItens {
+    grid-template-columns: 267px 267px;
+  }
+}
+
+@media (max-width: 599px) {
+  .containerItens {
+    grid-template-columns: 267px;
+  }
+}
+
+
+.totalBooks {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 380px;
+  text-align: center;
+  font-weight: 500;
+
+  span {
+    font-weight: 400;
+  }
+}
+
+
+.carregarmais {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+
+  button {
+    border: none;
+    outline: none;
+    background-color: #fff;
+    height: 40px;
+    font-weight: 500;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #111111;
+    padding: 0 10px;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+}
+
