@@ -1,20 +1,21 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
+import { BookProps } from '../../types/IBook'
 
-type AuthContextProviderProps = {
+interface FavoriteProviderProps {
   children: ReactNode;
 };
 
-type AuthContextType = {
+interface FavoriteContextType  {
   books: any | undefined;
   handleAddBooks: (books:any) => void;
   handleDeleteBook: (index:any) => void;
 }
 
-export const FavoriteContext = createContext({} as AuthContextType);
+export const FavoriteContext = createContext({} as FavoriteContextType);
 
-export const FavoriteProvider = (props: AuthContextProviderProps) => {
+export const FavoriteProvider = (props: FavoriteProviderProps) => {
 
-  const [books, setBooks] = useState<any[]>([]);
+  const [books, setBooks] = useState<BookProps[]>([]);
 
   function handleAddBooks(bookss:any){
     console.log('adicionar favorito')
