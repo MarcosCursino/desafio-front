@@ -20,34 +20,36 @@ export function Home() {
   function handleFetchData(id: number, e: FormEvent) {
     e.preventDefault();
 
-    setLoading(true);
-    console.log("aqui", books);
+    if (term !== "") {
+      setLoading(true);
+      console.log("aqui", books);
 
-    api
-      .get(
-        `volumes?q=${term}&maxResults=8&startIndex=${startIndex}&filter=ebooks`
-      )
-      .then((response) => {
-        console.log(response.data.items);
+      api
+        .get(
+          `volumes?q=${term}&maxResults=8&startIndex=${startIndex}&filter=ebooks`
+        )
+        .then((response) => {
+          console.log(response.data.items);
 
-        setBooks(
-          id === 1 ? response.data.items : [...books, ...response.data.items]
-        );
+          setBooks(
+            id === 1 ? response.data.items : [...books, ...response.data.items]
+          );
 
-        setTotalItens(response.data.totalItems);
-        setStartIndex(startIndex + 10);
-      })
-      .catch((err) => {
-        console.error("ops! ocorreu um erro: " + err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+          setTotalItens(response.data.totalItems);
+          setStartIndex(startIndex + 10);
+        })
+        .catch((err) => {
+          console.error("ops! ocorreu um erro: " + err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }
 
   return (
     <>
-    { loading && <Loading />}
+      {loading && <Loading />}
       <div className={styles.container}>
         <Search
           onSubmit={(e) => handleFetchData(1, e)}
@@ -68,7 +70,7 @@ export function Home() {
 
         {books.length > 0 && (
           <div className={styles.loadMore}>
-            <button onSubmit={(e) => handleFetchData(2, e)}>
+            <button onClick={(e) => handleFetchData(2, e)}>
               Econtrar mais Livros
               <img src={ExpandIcon} alt="Carregar mais itens" />
             </button>
