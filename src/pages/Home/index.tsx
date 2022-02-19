@@ -1,15 +1,15 @@
-import styles from "./Home.module.scss";
-
-import ExpandIcon from "../../assets/expandIcon.svg";
-
-import api from "../../service/api";
 import { useState } from "react";
+import api from "../../service/api";
+import ExpandIcon from "../../assets/expandIcon.svg";
 
 import { Card } from "../../components/Card/Card";
 import { Search } from "../../components/Search";
+import { BookProps } from "../../types/IBook";
+
+import styles from "./Home.module.scss";
 
 export function Home() {
-  const [books, setBooks] = useState<any[]>([]);
+  const [books, setBooks] = useState<BookProps[]>([]);
   const [startIndex, setStartIndex] = useState<number>(0);
   const [term, setTerm] = useState<string>("");
   const [totalItens, setTotalItens] = useState<number>(0);
@@ -63,7 +63,7 @@ export function Home() {
         </div>
 
         {books.length > 0 && (
-          <div className={styles.carregarmais}>
+          <div className={styles.loadMore}>
             <button onClick={() => handleFetchData(2)}>
               Econtrar mais Livros
               <img src={ExpandIcon} alt="Carregar mais itens" />
