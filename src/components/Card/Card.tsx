@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
-import FavoriteIcon from "../../assets/favoriteIcon.svg";
-import { formatedDate } from "../../utils/FormatedPrice";
 import Modal from "react-modal";
 
+import FavoriteIcon from "../../assets/favoriteIcon.svg";
+import { formatedDate } from "../../utils/FormatedPrice";
 import { FavoriteContext } from "../../contexts/FavoriteContext";
+import { BookProps } from "../../types/IBook";
 
 import styles from "./Card.module.scss";
 
-export function Card(props: any) {
+export function Card({ book, index, pageFavorite }: BookProps) {
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const { handleAddBooks, handleDeleteBook } = useContext(FavoriteContext);
 
@@ -31,25 +33,23 @@ export function Card(props: any) {
         <div className={styles.containerModal}>
           <img
             className={styles.thumbnail}
-            src={props.item.volumeInfo.imageLinks.thumbnail}
-            alt="Book"
+            src={book.volumeInfo.imageLinks.thumbnail}
+            alt={book.volumeInfo.title}
           />
 
-          <span className={styles.titleModal}>
-            {props.item.volumeInfo.title}
-          </span>
+          <span className={styles.titleModal}>{book.volumeInfo.title}</span>
 
-          {props.item.volumeInfo.authors && (
+          {book.volumeInfo.authors && (
             <span className={styles.author}>
               <strong>Autor: </strong>
-              {props.item.volumeInfo.authors[0]}
+              {book.volumeInfo.authors[0]}
             </span>
           )}
 
-          {props.item.volumeInfo.description && (
+          {book.volumeInfo.description && (
             <span className={styles.description}>
               <strong>Descrição: </strong>
-              {props.item.volumeInfo.description}
+              {book.volumeInfo.description}
             </span>
           )}
         </div>
@@ -58,15 +58,15 @@ export function Card(props: any) {
       <div className={styles.cardItem}>
         <img
           className={styles.thumbnail}
-          src={props.item.volumeInfo.imageLinks.thumbnail}
+          src={book.volumeInfo.imageLinks.thumbnail}
           alt="Book"
         />
-        <span className={styles.title}>{props.item.volumeInfo.title}</span>
+        <span className={styles.title}>{book.volumeInfo.title}</span>
 
-        {props.item.volumeInfo.publishedDate && (
+        {book.volumeInfo.publishedDate && (
           <small className={styles.publishedDate}>
             <strong>Publicação:</strong>
-            {formatedDate(props.item.volumeInfo.publishedDate)}
+            {formatedDate(book.volumeInfo.publishedDate)}
           </small>
         )}
 
@@ -75,12 +75,12 @@ export function Card(props: any) {
             Detalhes
           </button>
 
-          {props.pageFavorite ? (
-            <div onClick={() => handleDeleteBook(props.index)}>Excluir </div>
+          {pageFavorite ? (
+            <div onClick={() => handleDeleteBook(index)}>Excluir </div>
           ) : (
             <button
               className={styles.favoriteButton}
-              onClick={() => handleAddBooks(props.item)}
+              onClick={() => handleAddBooks(book)}
             >
               <img src={FavoriteIcon} alt="Favoritar" />
             </button>

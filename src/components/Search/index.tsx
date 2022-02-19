@@ -2,18 +2,18 @@ import styles from "./Search.module.scss";
 import SearchIcon from "../../assets/searchIcon.svg";
 
 type SearchProps = {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export function Search({ onChange, onClick }: SearchProps) {
+export function Search({ onChange, onSubmit }: SearchProps) {
   return (
-    <div className={styles.containerSearch}>
+    <form className={styles.containerSearch} onSubmit={onSubmit}>
       <input type="text" placeholder="Busque um livro" onChange={onChange} />
 
-      <button onClick={onClick}>
+      <button type="submit">
         <img src={SearchIcon} alt="Search" />
       </button>
-    </div>
+    </form>
   );
 }

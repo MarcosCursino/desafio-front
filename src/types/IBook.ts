@@ -13,5 +13,6 @@ export interface IBookProps {
 
 export interface BookProps {
   book: IBookProps;
+  index?: number;
+  pageFavorite?: boolean;
 }
-

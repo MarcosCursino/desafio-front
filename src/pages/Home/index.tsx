@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import api from "../../service/api";
 import ExpandIcon from "../../assets/expandIcon.svg";
 
@@ -16,7 +16,9 @@ export function Home() {
 
   const [loading, setLoading] = useState(false);
 
-  function handleFetchData(id: number) {
+  function handleFetchData(id: number, e: FormEvent) {
+    e.preventDefault();
+
     setLoading(true);
     console.log("aqui", books);
 
@@ -46,7 +48,7 @@ export function Home() {
     <>
       <div className={styles.container}>
         <Search
-          onClick={() => handleFetchData(1)}
+          onSubmit={(e) => handleFetchData(1, e)}
           onChange={(e) => setTerm(e.target.value)}
         />
 
@@ -57,14 +59,14 @@ export function Home() {
         )}
 
         <div className={styles.containerItens}>
-          {books?.map((item, index) => (
-            <Card item={item} key={index} />
+          {books?.map((item: any, index: any) => (
+            <Card book={item} key={index} />
           ))}
         </div>
 
         {books.length > 0 && (
           <div className={styles.loadMore}>
-            <button onClick={() => handleFetchData(2)}>
+            <button onSubmit={(e) => handleFetchData(2, e)}>
               Econtrar mais Livros
               <img src={ExpandIcon} alt="Carregar mais itens" />
             </button>
