@@ -3,6 +3,7 @@ import api from "../../service/api";
 import ExpandIcon from "../../assets/expandIcon.svg";
 
 import { Card } from "../../components/Card/Card";
+import { Loading } from "../../components/Loading";
 import { Search } from "../../components/Search";
 import { BookProps } from "../../types/IBook";
 
@@ -46,6 +47,7 @@ export function Home() {
 
   return (
     <>
+    { loading && <Loading />}
       <div className={styles.container}>
         <Search
           onSubmit={(e) => handleFetchData(1, e)}

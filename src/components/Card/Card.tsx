@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Modal from "react-modal";
 
 import FavoriteIcon from "../../assets/favoriteIcon.svg";
+import DeleteIcon from "../../assets/deleteIcon.svg";
 import { formatedDate } from "../../utils/FormatedPrice";
 import { FavoriteContext } from "../../contexts/FavoriteContext";
 import { BookProps } from "../../types/IBook";
@@ -76,7 +77,9 @@ export function Card({ book, index, pageFavorite }: BookProps) {
           </button>
 
           {pageFavorite ? (
-            <div onClick={() => handleDeleteBook(index)}>Excluir </div>
+            <button onClick={() => handleDeleteBook(index)} className={styles.delete}>
+              <img src={DeleteIcon} alt="Excluir Favorito" />
+            </button>
           ) : (
             <button
               className={styles.favoriteButton}
