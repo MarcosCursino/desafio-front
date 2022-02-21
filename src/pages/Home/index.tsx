@@ -3,8 +3,8 @@ import api from "../../service/api";
 import ExpandIcon from "../../assets/expandIcon.svg";
 
 import { Card } from "../../components/Card/Card";
-import { Loading } from "../../components/Loading";
-import { Search } from "../../components/Search";
+import { Loading } from "../../components/Loading/Loading";
+import { Search } from "../../components/Search/Search";
 import { BookProps } from "../../types/IBook";
 
 import styles from "./Home.module.scss";

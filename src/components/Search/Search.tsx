@@ -2,7 +2,7 @@ import styles from "./Search.module.scss";
 import SearchIcon from "../../assets/searchIcon.svg";
 
 type SearchProps = {
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
